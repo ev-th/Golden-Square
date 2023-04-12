@@ -20,4 +20,12 @@ describe "includes_string? method" do
     result = includes_string?('')
     expect(result).to eq false
   end
+
+  it "fails when passed nil" do
+    expect { includes_string?(nil) }.to raise_error "Invalid argument - expected String and got nil"
+  end
+
+  it "fails when passed Integer" do
+    expect { includes_string?(1) }.to raise_error "Invalid argument - expected String and got Integer"
+  end
 end
