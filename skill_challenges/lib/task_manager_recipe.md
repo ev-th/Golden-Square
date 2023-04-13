@@ -14,7 +14,7 @@ I want to mark tasks as complete and have them disappear from the list.
 
 ```ruby
 class TaskManager
-  def initializer
+  def initialize
     # ...
   end
 
@@ -30,6 +30,7 @@ class TaskManager
   def mark_as_complete(task) # task is a string
     # Return "Completed - task"
     # Remove task from the list
+  end
 end
 ```
 
@@ -45,18 +46,18 @@ task_manager.tasks # => "No tasks to complete."
 # 2
 task_manager = TaskManager.new
 task_manager.add_task("Walk the dog")
-task.manager.tasks # => "TODO: Walk the dog"
+task_manager.tasks # => "TODO: Walk the dog"
 
 # 3
 task_manager = TaskManager.new
 task_manager.add_task("Walk the dog")
 task_manager.add_task("Do the dishes")
-task.manager.tasks # => "TODO: Walk the dog, Do the dishes"
+task_manager.tasks # => "TODO: Walk the dog, Do the dishes"
 
 # 4
 task_manager = TaskManager.new
 task_manager.add_task("Walk the dog")
-task_manager.mark_as_complete("Walk the dog") # => "Completed - Walk the dog"
+task_manager.mark_as_complete("Walk the dog") # => "Completed: Walk the dog"
 
 # 5
 task_manager = TaskManager.new
