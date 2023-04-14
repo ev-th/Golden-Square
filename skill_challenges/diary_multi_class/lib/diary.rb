@@ -8,7 +8,7 @@ class Diary
   end
 
   def all
-    # Returns a list of instances of DiaryEntry
+    []
   end
 
   def count_words
