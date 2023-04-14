@@ -33,6 +33,8 @@ class Diary
     # Returns an instance of diary entry representing the entry that is closest 
     # to, but not over, the length that the user could read in the minutes they
     # have available given their reading speed.
+    fail "There are no entries" if @entries.empty?
+    
     max_words = wpm * minutes
     possible_reads = @entries.select { |entry| entry.count_words <= max_words }
     possible_reads.max(&:count_words)
