@@ -1,10 +1,49 @@
+require "diary"
+require "diary_entry"
+require "todo_list"
+require "todo"
+
+describe "integration" do
+  context "when Diary is initialized" do
+    it "has an empty list of phone numbers" do
+      diary = Diary.new
+      expect(diary.all_phone_numbers).to eq []
+    end
+
+    it "has an empty list of diary entries" do
+      diary = Diary.new
+      expect(diary.all).to eq []
+    end
+
+    it "fails to get the longest possible entry" do
+      diary = Diary.new
+      expect { diary.get_longest_possible(2, 2) }.to raise_error(
+        "There are currently no diary entries"
+      )
+    end
+
+    describe "#todos" do
+      it "returns an empty list of todos" do
+        diary = Diary.new
+        expect(diary.todos).to eq []
+      end
+      
+      it "returns an empty list of completed todos" do
+        diary = Diary.new
+        result = diary.todos(status='complete')
+        expect(result).to eq []
+      end
+
+      it "returns an empty list of incomplete todos" do
+        diary = Diary.new
+        result = diary.todos(status='incomplete')
+        expect(result).to eq []
+      end
+    end
+  end
+end
+
 # Diary
-  # When set up
-    # Provides an empty list of phone numbers
-    # Provides an empty list of diary entries
-    # Fails to get longest possible entry
-    # Has a list of todos
-      # Complete == [], Incomplete == [], all == []
   # When provided with multiple entries
     # provides a list of them
     # #get_longest_possible
