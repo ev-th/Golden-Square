@@ -1,20 +1,22 @@
 class Todo
+  attr_reader :title, :content
+
   def initialize(title, content)
+    @title = title
+    @content = content
+    @complete = false
   end
 
-  def title # => String
+  def mark_complete!
+    fail "todo is already complete" if @complete
+    @complete = true
   end
 
-  def content # => String
+  def word_count
+    @content.split(" ").length
   end
 
-  def mark_complete! # => nil
-    # updates the state from incomplete to complete
-  end
-
-  def word_count # => Integer
-  end
-
-  def complete? # => bool
+  def complete?
+    @complete
   end
 end

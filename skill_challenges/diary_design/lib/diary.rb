@@ -3,6 +3,7 @@ class Diary
     # set up a list for diary entries
     # set up a todo list
     @entries = []
+    @todo_list = TodoList.new
   end
 
   def all # => []
@@ -32,10 +33,11 @@ class Diary
 
   def todos(status = 'all')
     # Returns a list of todos based on whether status == 'all', 'complete', 'incomplete'
-    []
+    return @todo_list.completed_tasks if status == 'complete'
+    @todo_list.all
   end
 
   def add_todo(todo)
-    # Adds the todo to the Diary's todo list
+    @todo_list.add(todo)
   end
 end
