@@ -1,8 +1,26 @@
-# {{PROBLEM}} Multi-Class Planned Design Recipe
+# Diary Design Recipe
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+As a user
+So that I can record my experiences
+I want to keep a regular diary
+
+As a user
+So that I can reflect on my experiences
+I want to read my past diary entries
+
+As a user
+So that I can reflect on my experiences in my busy day
+I want to select diary entries to read based on how much time I have and my reading speed
+
+As a user
+So that I can keep track of my tasks
+I want to keep a todo list along with my diary
+
+As a user
+So that I can keep track of my contacts
+I want to see a list of all of the mobile phone numbers in all my diary entries
 
 ## 2. Design the Class System
 
@@ -11,25 +29,28 @@ focus on the details you see as important, not everything. The diagram below
 uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com_
 
 ```
-┌────────────────────────────┐
-│ MusicPlayer                │
-│                            │
-│ - add(track)               │
-│ - all                      │
-│ - search_by_title(keyword) │
-│   => [tracks...]           │
-└───────────┬────────────────┘
-            │
-            │ owns a list of
-            ▼
-┌─────────────────────────┐
-│ Track(title, artist)    │
-│                         │
-│ - title                 │
-│ - artist                │
-│ - format                │
-│   => "TITLE by ARTIST"  │
-└─────────────────────────┘
+┌─────────────────────────────────────────────┐             ┌────────────────────┐
+│ Diary                                       │             │ TodoList           │
+│                                             │    has a    │                    │
+│ - add(entry)                                ├────────────►│ - all              │
+│ - get(entry)                                │             │ - completed_tasks  │
+│ - get_longest_possible(wpm, time_available) │             │ - incomplete_tasks │
+│ - get_phone_numbers(entry)                  │             │ - add              │
+└────────────┬────────────────────────────┬───┘             │                    │
+             │                            │                 └─────────┬──────────┘
+             │ has 0 to many              │ has a                     │
+┌────────────▼──────────────┐       ┌─────▼─────┐                     │
+│ DiaryEntry(title, content)│       │ Phonebook │                     │ has 0 to many
+│                           │       │           │                     │
+│ - title                   │       │ - add     │                     │
+│ - content                 │       │ - all     │          ┌──────────▼───────────┐
+│ - word_count              │       └───────────┘          │ Todo(title, content) │
+└───────────────────────────┘                              │                      │
+                                                           │ - title              │
+                                                           │ - content            │
+                                                           │ - word_count         │
+                                                           │                      │
+                                                           └──────────────────────┘
 ```
 
 _Also design the interface of each class in more detail._
