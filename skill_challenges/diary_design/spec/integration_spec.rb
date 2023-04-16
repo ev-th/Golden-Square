@@ -43,7 +43,7 @@ describe "integration" do
   end
 
   context "when Diary has multiple entries" do
-    xit "has a list of them" do
+    it "has a list of them" do
       diary = Diary.new
       entry1 = DiaryEntry.new("title 1", "content 1")
       entry2 = DiaryEntry.new("title 2", "content 2")

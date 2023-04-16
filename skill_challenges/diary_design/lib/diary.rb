@@ -3,14 +3,15 @@ class Diary
     # set up a list for diary entries
     # set up a phonebook
     # set up a todo list
+    @entries = []
   end
 
   def all # => []
-    []
+    @entries
   end
 
   def add(entry) # => nil
-    # adds a DiaryEntry object to the list
+    @entries << entry
   end
 
   def get_longest_possible(wpm, time_available) # => DiaryEntry
