@@ -173,7 +173,6 @@ combinations that reflect the ways in which the system will be used._
     # #todos returns all of them
     # #todos(status = 'complete') returns completed todos
     # #todos(status = 'incomplete') returns incomplete todos
-
 ```
 
 ## 4. Create Examples as Unit Tests
