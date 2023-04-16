@@ -41,6 +41,17 @@ describe "integration" do
       end
     end
   end
+
+  context "when Diary has multiple entries" do
+    xit "has a list of them" do
+      diary = Diary.new
+      entry1 = DiaryEntry.new("title 1", "content 1")
+      entry2 = DiaryEntry.new("title 2", "content 2")
+      diary.add(entry1)
+      diary.add(entry2)
+      expect(diary.all).to eq [entry1, entry2]
+    end
+  end
 end
 
 # Diary
