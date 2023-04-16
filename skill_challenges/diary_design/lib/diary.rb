@@ -1,7 +1,6 @@
 class Diary
   def initialize
     # set up a list for diary entries
-    # set up a phonebook
     # set up a todo list
     @entries = []
   end
@@ -21,16 +20,14 @@ class Diary
     
     max_words = wpm * time_available
     readable_entries = @entries.select { |entry| entry.word_count <= max_words }
-
     
     fail "All of the current entries are too long to read" if readable_entries.empty?
 
     readable_entries.sort_by(&:word_count).last
   end
 
-  def all_phone_numbers # => [String]
-    # Returns a list of phone numbers in all diary entries
-    []
+  def all_phone_numbers
+    @entries.reduce([]) { |numbers, entry| numbers + entry.phone_numbers}
   end
 
   def todos(status = 'all')

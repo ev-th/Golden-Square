@@ -99,13 +99,41 @@ describe "integration" do
       end
     end
   end
+  
+  describe "#all_phone_numbers" do
+    context "when none of the entries contain valid phone numbers" do
+      it "returns an empty array" do
+        diary = Diary.new
+        entry1 = DiaryEntry.new("title1", "Content with no phone number")
+        entry2 = DiaryEntry.new("title1", "Content with an invalid number 12345678")
+        diary.add(entry1)
+        diary.add(entry2)
+        result = diary.all_phone_numbers
+        expect(result).to eq []
+      end
+    end
+
+    context "when entries contain one or more phone numbers" do
+      it "returns a list of all the phone numbers" do
+        diary = Diary.new
+        entry1 = DiaryEntry.new("title1", "12345678901")
+        entry2 = DiaryEntry.new("title2", "09876543212, 13579864213")
+        entry3 = DiaryEntry.new("title3", "no phone number")
+        diary.add(entry1)
+        diary.add(entry2)
+        diary.add(entry3)
+        result = diary.all_phone_numbers
+        expect(result).to eq [
+          "12345678901",
+          "09876543212",
+          "13579864213"
+        ]
+      end
+    end
+  end
 end
 
 # Diary
-  # When provided with multiple entries
-    # #all_phone_numbers
-      # Returns empty list when entries don't have phone numbers
-      # Returns all phone numbers when entries have one or more phone numbers
   # When todos are added
     # #todos returns all of them
     # #todos(status = 'complete') returns completed todos
