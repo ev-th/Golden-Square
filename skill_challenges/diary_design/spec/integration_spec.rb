@@ -52,15 +52,57 @@ describe "integration" do
       expect(diary.all).to eq [entry1, entry2]
     end
   end
+
+  describe "#get_longest_possible" do
+    context "when none of the entries are short enough to read" do
+      it "fails" do
+        diary = Diary.new
+        entry1 = DiaryEntry.new("title1", "Content for entry1")
+        entry2 = DiaryEntry.new("title1", "Even longer content for entry2")
+        diary.add(entry1)
+        diary.add(entry2)
+        expect { diary.get_longest_possible(1, 1) }.to raise_error(
+          "All of the current entries are too long to read"
+        )
+      end
+    end
+    
+    context "when there is an entry of the exact length to read" do
+      it "returns that entry" do
+        diary = Diary.new
+        entry1 = DiaryEntry.new("title1", "Short content")
+        entry2 = DiaryEntry.new("title1", "1, 2, 3")
+        entry3 = DiaryEntry.new("title1", "Exactly the right length")
+        entry4 = DiaryEntry.new("title1", "The length of entry 4 is too long")
+        diary.add(entry1)
+        diary.add(entry2)
+        diary.add(entry3)
+        diary.add(entry4)
+        result = diary.get_longest_possible(2, 2)
+        expect(result).to eq entry3
+      end
+    end
+    
+    context "when there are some longer and some shorter entries" do
+      it "returns the longest that can be read in the time" do
+        diary = Diary.new
+        entry1 = DiaryEntry.new("title1", "Short content")
+        entry2 = DiaryEntry.new("title1", "1, 2, 3")
+        entry3 = DiaryEntry.new("title1", "This is moderately lengthy")
+        entry4 = DiaryEntry.new("title1", "The length of entry 4 is too long")
+        diary.add(entry1)
+        diary.add(entry2)
+        diary.add(entry3)
+        diary.add(entry4)
+        result = diary.get_longest_possible(3, 2)
+        expect(result).to eq entry3
+      end
+    end
+  end
 end
 
 # Diary
   # When provided with multiple entries
-    # provides a list of them
-    # #get_longest_possible
-      # Fails to get longest possible entry when none are short enough
-      # When there is an entry exactly the right length, it will return that as the longest possible entry
-      # When there is a selection of longer and shorter entries, it will return the longest that is possible to read
     # #all_phone_numbers
       # Returns empty list when entries don't have phone numbers
       # Returns all phone numbers when entries have one or more phone numbers

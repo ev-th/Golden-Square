@@ -17,7 +17,15 @@ class Diary
   def get_longest_possible(wpm, time_available) # => DiaryEntry
     # Get the longest possible entry that can be read in the time available
     # given the speed in wpm
-    fail "There are currently no diary entries"
+    fail "There are currently no diary entries" if @entries.empty?
+    
+    max_words = wpm * time_available
+    readable_entries = @entries.select { |entry| entry.word_count <= max_words }
+
+    
+    fail "All of the current entries are too long to read" if readable_entries.empty?
+
+    readable_entries.sort_by(&:word_count).last
   end
 
   def all_phone_numbers # => [String]
