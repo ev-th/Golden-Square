@@ -56,31 +56,81 @@ uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com_
 _Also design the interface of each class in more detail._
 
 ```ruby
-class MusicLibrary
+class Diary
   def initialize
-    # ...
+    # set up a list for diary entries
+    # set up a phonebook
+    # set up a todo list
   end
 
-  def add(track) # track is an instance of Track
-    # Track gets added to the library
-    # Returns nothing
+  def add(entry)
   end
 
-  def all
-    # Returns a list of track objects
+  def get(entry)
   end
-  
-  def search_by_title(keyword) # keyword is a string
-    # Returns a list of tracks with titles that include the keyword
+
+  def get_longest_possible(wpm, time_available)
+  end
+
+  def get_phone_numbers(entry)
   end
 end
 
-class Track
-  def initialize(title, artist) # title and artist are both strings
+class DiaryEntry
+  def initialize(title, content)
   end
 
-  def format
-    # Returns a string of the form "TITLE by ARTIST"
+  def title
+  end
+
+  def content
+  end
+
+  def word_count
+  end
+end
+
+class TodoList
+  def initialize
+    # set up list for todos
+  end
+
+  def all
+  end
+
+  def completed_tasks
+  end
+
+  def incomplete_tasks
+  end
+
+  def add
+  end
+end
+
+class Todo
+  def initialize(title, content)
+  end
+
+  def title
+  end
+
+  def content
+  end
+
+  def word_count
+  end
+end
+
+class Phonebook
+  def initialize
+    # set up list for numbers
+  end
+
+  def add
+  end
+
+  def all
   end
 end
 ```
@@ -91,15 +141,7 @@ _Create examples of the classes being used together in different situations and
 combinations that reflect the ways in which the system will be used._
 
 ```ruby
-# EXAMPLE
-
-# Gets all tracks
-library = MusicLibrary.new
-track_1 = Track.new("Carte Blanche", "Veracocha")
-track_2 = Track.new("Synaesthesia", "The Thrillseekers")
-library.add(track_1)
-library.add(track_2)
-library.all # => [track_1, track_2]
+#
 ```
 
 ## 4. Create Examples as Unit Tests
