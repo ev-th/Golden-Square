@@ -11,9 +11,9 @@ class TodoList
   def completed_tasks # => [Todo]
     @todos.select(&:complete?)
   end
-
+  
   def incomplete_tasks # => [Todo]
-    []
+    @todos.reject(&:complete?)
   end
 
   def add(todo)

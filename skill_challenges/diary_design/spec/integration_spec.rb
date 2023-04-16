@@ -18,7 +18,7 @@ describe "integration" do
     it "fails to get the longest possible entry" do
       diary = Diary.new
       expect { diary.get_longest_possible(2, 2) }.to raise_error(
-        "There are currently no diary entries"
+        "There are currently no diary entries of readable length"
       )
     end
 
@@ -61,7 +61,7 @@ describe "integration" do
           diary.add(entry1)
           diary.add(entry2)
           expect { diary.get_longest_possible(1, 1) }.to raise_error(
-            "All of the current entries are too long to read"
+            "There are currently no diary entries of readable length"
           )
         end
       end
@@ -146,7 +146,7 @@ describe "integration" do
       end
       
       context "when passed status='complete'" do
-        xit "returns all completed todos in the todo list" do
+        it "returns all completed todos in the todo list" do
           diary = Diary.new
           todo1 = Todo.new("title1", "content1")
           todo2 = Todo.new("title2", "content2")
@@ -158,11 +158,37 @@ describe "integration" do
         end
       end
 
+      context "when passed status='incomplete'" do
+        it "returns all incomplete todos in the todo list" do
+          diary = Diary.new
+          todo1 = Todo.new("title1", "content1")
+          todo2 = Todo.new("title2", "content2")
+          todo3 = Todo.new("title3", "content3")
+          diary.add_todo(todo1)
+          diary.add_todo(todo2)
+          diary.add_todo(todo3)
+          todo2.mark_complete!
+          result = diary.todos(status='incomplete')
+          expect(result).to eq [todo1, todo3]
+        end
+      end
+
+      context "when passed an invalid value to status kwarg" do
+        it "fails" do
+          diary = Diary.new
+          todo1 = Todo.new("title1", "content1")
+          todo2 = Todo.new("title2", "content2")
+          todo3 = Todo.new("title3", "content3")
+          diary.add_todo(todo1)
+          diary.add_todo(todo2)
+          diary.add_todo(todo3)
+          todo2.mark_complete!
+          expect { result = diary.todos(status='invalid_value') }.to raise_error(
+            "Invalid value for 'status'. Accepts 'all', 'complete', or 'incomplete'"
+          )
+        end
+      end
+
     end
   end
 end
-# Diary
-  # When todos are added
-    # #todos returns all of them
-    # #todos(status = 'complete') returns completed todos
-    # #todos(status = 'incomplete') returns incomplete todos

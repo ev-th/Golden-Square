@@ -1,28 +1,22 @@
 class Diary
   def initialize
-    # set up a list for diary entries
-    # set up a todo list
     @entries = []
     @todo_list = TodoList.new
   end
 
-  def all # => []
+  def all
     @entries
   end
 
-  def add(entry) # => nil
+  def add(entry)
     @entries << entry
   end
 
-  def get_longest_possible(wpm, time_available) # => DiaryEntry
-    # Get the longest possible entry that can be read in the time available
-    # given the speed in wpm
-    fail "There are currently no diary entries" if @entries.empty?
-    
+  def get_longest_possible(wpm, time_available)    
     max_words = wpm * time_available
     readable_entries = @entries.select { |entry| entry.word_count <= max_words }
     
-    fail "All of the current entries are too long to read" if readable_entries.empty?
+    fail "There are currently no diary entries of readable length" if readable_entries.empty?
 
     readable_entries.sort_by(&:word_count).last
   end
@@ -32,9 +26,16 @@ class Diary
   end
 
   def todos(status = 'all')
-    # Returns a list of todos based on whether status == 'all', 'complete', 'incomplete'
-    return @todo_list.completed_tasks if status == 'complete'
-    @todo_list.all
+    case status
+    when 'complete'
+      @todo_list.completed_tasks
+    when 'incomplete'
+      @todo_list.incomplete_tasks
+    when 'all'
+      @todo_list.all
+    else
+      fail "Invalid value for 'status'. Accepts 'all', 'complete', or 'incomplete'"
+    end
   end
 
   def add_todo(todo)
