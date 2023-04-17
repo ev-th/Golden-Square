@@ -21,4 +21,16 @@ RSpec.describe "tasks integration" do
     task_2.mark_complete
     expect(task_list.all_complete?).to eq true
   end
+  
+  it "returns an array of formatted tasks" do
+    task_list = TaskList.new
+    task_1 = Task.new("Walk the dog")
+    task_2 = Task.new("Walk the cat")
+    task_list.add(task_1)
+    task_list.add(task_2)
+    task_1.mark_complete
+    expect(
+      task_list.all_formatted
+    ).to eq ["- [X] Walk the dog", "- [ ] Walk the cat"]
+  end
 end
