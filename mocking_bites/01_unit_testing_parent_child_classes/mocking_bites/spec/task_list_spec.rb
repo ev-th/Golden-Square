@@ -32,4 +32,39 @@ RSpec.describe TaskList do
       ).to eq [task_1_dbl, task_2_dbl]
     end
   end
+
+  context "#all_complete" do
+    it "returns false when all tasks are incomplete" do
+      task_list = TaskList.new
+      fake_task1 = double :Task, complete?: false
+      fake_task2 = double :Task, complete?: false
+      task_list.add(fake_task1)
+      task_list.add(fake_task2)
+      expect(
+        task_list.all_complete?
+      ).to eq false
+    end
+    
+    it "returns true when all tasks are complete" do
+      task_list = TaskList.new
+      fake_task1 = double :Task, complete?: true
+      fake_task2 = double :Task, complete?: true
+      task_list.add(fake_task1)
+      task_list.add(fake_task2)
+      expect(
+        task_list.all_complete?
+      ).to eq true
+    end
+    
+    it "returns false when some tasks are complete and some incomplete" do
+      task_list = TaskList.new
+      fake_task1 = double :Task, complete?: true
+      fake_task2 = double :Task, complete?: false
+      task_list.add(fake_task1)
+      task_list.add(fake_task2)
+      expect(
+        task_list.all_complete?
+      ).to eq false
+    end
+  end
 end
