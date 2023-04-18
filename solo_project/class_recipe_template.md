@@ -14,15 +14,11 @@ As a customer
 So that I can verify that my order is correct
 I would like to see an itemised receipt with a grand total.
 
-Use the twilio-ruby gem to implement this next one. You will need to use doubles too.
-
 As a customer
 So that I am reassured that my order will be delivered on time
 I would like to receive a text such as "Thank you! Your order was placed and will be delivered before 18:52" after I have ordered.
 
 ## 2. Design the Class Interface
-
-_Include the initializer and public methods with all parameters and return values._
 
 ```ruby
 # EXAMPLE
@@ -101,27 +97,25 @@ end
 
 ## 3. Create Examples as Tests
 
-_Make a list of examples of how the class will behave in different situations._
-
 ```ruby
-# EXAMPLE
+# 1 - Display a list of menu items with prices
 
-# 1
-reminder = Reminder("Kay")
-reminder.remind_me_to("Walk the dog")
-reminder.remind() # => "Walk the dog, Kay!"
+# 2 - Fail to create an order with no dishes
 
-# 2
-reminder = Reminder("Kay")
-reminder.remind() # fails with "No task set."
+# 3 - Create an order with one available dish
 
-# 3
-reminder = Reminder("Kay")
-reminder.remind_me_to("")
-reminder.remind() # => ", Kay!"
+# 4 - Create an order with several available dishes
+
+# 5 - Fail to create an order when selecting one unavailable dish
+
+# 6 - Fail to create an order when selecting several unavailable dishes
+
+# 7 - Display an itemised receipt of an order with a grand total
+
+# 8 - Send a text message to confirm order such as "Thank you! Your order was placed and will be delivered before 18:52"
+
+# 9 - Fail to send a text message when order is not confirmed
 ```
-
-_Encode each example as a test. You can add to the above list as you go._
 
 ## 4. Implement the Behaviour
 
