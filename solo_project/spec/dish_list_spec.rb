@@ -27,7 +27,10 @@ RSpec.describe DishList do
       expect(menu.list).to eq [fake_pasta, fake_pizza]
     end
 
-    it "can remove those dishes" do
+  end
+  
+  describe "#remove" do
+    it "can remove dishes from the list" do
       menu = DishList.new
       fake_pasta = double :Dish
       fake_pizza = double :Dish
@@ -38,19 +41,15 @@ RSpec.describe DishList do
       menu.remove(fake_pizza)
       expect(menu.list).to eq [fake_pasta, fake_risotto]
     end
-  end
-  
-  describe "#remove" do
-    context "when attempting to remove dishes that are not present" do
-      it "fails" do
-        menu = DishList.new
-        fake_pasta = double :Dish
-        fake_risotto = double :Dish
-        menu.add(fake_pasta)
-        expect {
-          menu.remove(fake_risotto)
-        }.to raise_error "This item is not in the list"
-      end
+
+    it "fails when attempting to remove dishes that are not present" do
+      menu = DishList.new
+      fake_pasta = double :Dish
+      fake_risotto = double :Dish
+      menu.add(fake_pasta)
+      expect {
+        menu.remove(fake_risotto)
+      }.to raise_error "This item is not in the list"
     end
   end
   

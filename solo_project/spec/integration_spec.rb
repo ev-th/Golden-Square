@@ -4,7 +4,7 @@ require 'order'
 require 'text_message_sender'
 
 RSpec.describe "integration" do
-  xit "displays a list of menu items with prices" do
+  it "displays a list of menu items with prices" do
     pasta = Dish.new("Pasta", 1250)
     pizza = Dish.new("Pizza", 1599)
     risotto = Dish.new("Risotto", 1300, available=false)
