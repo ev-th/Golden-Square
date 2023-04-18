@@ -27,18 +27,74 @@ _Include the initializer and public methods with all parameters and return value
 ```ruby
 # EXAMPLE
 
-class Reminder
-  def initialize(name) # name is a string
+class Dish
+  def initialize
     # ...
   end
 
-  def remind_me_to(task) # task is a string
-    # No return value
+  def available?
+    # returns boolean based on availability
   end
 
-  def remind()
-    # Throws an exception if no task is set
-    # Otherwise, returns a string reminding the user to do the task
+  def inspect
+    # returns readable string including name and price
+  end
+end
+
+class DishList
+  def initialize
+    # ...
+  end
+
+  def add(dish) #dish is an instance of Dish
+    # adds a dish to the list
+  end
+
+  def remove(dish) #dish is an instance of Dish
+    # removes a dish from the list
+  end
+
+  def display(availability=true) # toggle availability to display without availability
+    # prints the list of dishes
+  end
+
+  def all_available?
+    # returns a boolean
+    # true if all available, false if any not available
+  end
+end
+
+class Order
+  def initialize(dish_list) # dish_list is an instance of DishList
+    #  fails if some of the dishes are not available
+  end
+
+  def confirm!
+    # Marks the order as complete
+    # Records the time of order confirmation
+  end
+
+  def complete?
+    # Returns a boolean based on whether order is marked complete
+  end
+
+  display_as_receipt
+    # Displays the dish list without availability
+    # Displays a Total price
+  end
+end
+
+class TextMessageSender
+  def initialize(order, requester, text_message_api)
+    # order is an instance of Order
+      # fails if not marked as complete
+    # requester expected to use NET::HTTP or fake for unit tests
+    # text_message_api expected to be twilio or fake for unit tests
+  end
+
+  def send
+    # Sends the message
+    # Returns json??
   end
 end
 ```
