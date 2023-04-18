@@ -7,9 +7,12 @@ class InteractiveCalculator
     @io.puts "Hello. I will subtract two numbers."
     @io.puts "Please enter a number"
     first = @io.gets.chomp
+
     @io.puts "Please enter another number"
     second = @io.gets.chomp
+
+    result = first.to_i - second.to_i
     @io.puts "Here is your result:"
-    @io.puts "4 - 3 = 1"
+    @io.puts"#{first} - #{second} = #{result}"
   end
 end
