@@ -1,4 +1,22 @@
-# 1 - Display a list of menu items with prices
+require 'dish'
+require 'dish_list'
+require 'order'
+require 'text_message_sender'
+
+RSpec.describe "integration" do
+  xit "displays a list of menu items with prices" do
+    pasta = Dish.new("Pasta", 1250)
+    pizza = Dish.new("Pizza", 1599)
+    risotto = Dish.new("Risotto", 1300, available=false)
+    salad = Dish.new("Salad", 985)
+    menu = DishList.new
+    menu.add(pasta)
+    menu.add(pizza)
+    menu.add(salad)
+    menu.add(risotto)
+    expect(menu.list).to eq [pasta, pizza, salad, risotto]
+  end
+end
 
 # 2 - Fail to create an order with no dishes
 

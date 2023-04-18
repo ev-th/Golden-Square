@@ -12,7 +12,7 @@ class Order
     # Returns a boolean based on whether order is marked complete
   end
 
-  display_as_receipt
+  def display_as_receipt
     # Displays the dish list without availability
     # Displays a Total price
   end
