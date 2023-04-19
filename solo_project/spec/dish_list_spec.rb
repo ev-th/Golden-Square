@@ -15,6 +15,11 @@ RSpec.describe DishList do
         }.to raise_error "there are no dishes in the list"
       end
     end
+    
+    it "has a total price of 0" do
+      menu = DishList.new
+      expect(menu.total_price).to eq 0
+    end
   end
 
   context "when dishes are added" do
@@ -26,7 +31,17 @@ RSpec.describe DishList do
       menu.add(fake_pizza)
       expect(menu.list).to eq [fake_pasta, fake_pizza]
     end
-
+    
+    it "has a total price" do
+      menu = DishList.new
+      fake_pasta = double :Dish, price: 850
+      fake_pizza = double :Dish, price: 799
+      fake_risotto = double :Dish, price: 1020
+      menu.add(fake_pasta)
+      menu.add(fake_pizza)
+      menu.add(fake_risotto)
+      expect(menu.total_price).to eq 2669
+    end
   end
   
   describe "#remove" do
