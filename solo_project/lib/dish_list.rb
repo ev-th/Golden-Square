@@ -13,8 +13,11 @@ class DishList
   end
 
   def all_available?
-    fail "there are no dishes in the list" if @dishes.empty?
     @dishes.all?(&:available?)
+  end
+
+  def empty?
+    @dishes.empty?
   end
 
   def list

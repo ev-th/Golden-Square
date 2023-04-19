@@ -20,15 +20,13 @@ RSpec.describe "integration" do
 
   # 2 - Fail to create an order with no dishes
   context "when no dishes are added" do
-    xit "fails to initialise an order" do
+    it "fails to initialise an order" do
       menu = DishList.new
       expect {
         order = Order.new(menu)
       }.to raise_error "There must be at least one dish in the list to initialize order"
     end
   end
-
-
 
 # 3 - Create an order with one available dish
 

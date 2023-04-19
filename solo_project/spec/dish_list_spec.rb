@@ -4,16 +4,7 @@ RSpec.describe DishList do
   context "initially" do
     it "has an empty list" do
       menu = DishList.new
-      expect(menu.list).to eq []
-    end
-
-    describe "#all_available?" do
-      it "fails" do
-        menu = DishList.new
-        expect {
-          menu.all_available?
-        }.to raise_error "there are no dishes in the list"
-      end
+      expect(menu.empty?).to eq true
     end
     
     it "has a total price of 0" do
@@ -30,6 +21,15 @@ RSpec.describe DishList do
       menu.add(fake_pasta)
       menu.add(fake_pizza)
       expect(menu.list).to eq [fake_pasta, fake_pizza]
+    end
+    
+    it "is not empty" do
+      menu = DishList.new
+      fake_pasta = double :Dish
+      fake_pizza = double :Dish
+      menu.add(fake_pasta)
+      menu.add(fake_pizza)
+      expect(menu.empty?).to eq false
     end
     
     it "has a total price" do
