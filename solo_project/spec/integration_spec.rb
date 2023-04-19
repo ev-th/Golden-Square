@@ -16,9 +16,19 @@ RSpec.describe "integration" do
     menu.add(risotto)
     expect(menu.list).to eq [pasta, pizza, salad, risotto]
   end
-end
 
-# 2 - Fail to create an order with no dishes
+
+  # 2 - Fail to create an order with no dishes
+  context "when no dishes are added" do
+    xit "fails to initialise an order" do
+      menu = DishList.new
+      expect {
+        order = Order.new(menu)
+      }.to raise_error "There must be at least one dish in the list to initialize order"
+    end
+  end
+
+
 
 # 3 - Create an order with one available dish
 
@@ -33,3 +43,5 @@ end
 # 8 - Send a text message to confirm order such as "Thank you! Your order was placed and will be delivered before 18:52"
 
 # 9 - Fail to send a text message when order is not confirmed
+
+end

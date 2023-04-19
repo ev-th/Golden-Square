@@ -20,4 +20,8 @@ class DishList
   def list
     @dishes
   end
+
+  def total_price
+    @dishes.sum(&:price)
+  end
 end
