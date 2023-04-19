@@ -13,7 +13,7 @@ class Dish
     @availability
   end
 
-  def inspect
+  def to_s
     pounds = @price / 100
     pence = @price % 100
     "#{@name} - #{price_to_s}"
@@ -24,6 +24,7 @@ class Dish
   def price_to_s
     pounds = @price / 100
     pence = @price % 100
+    pence = "#{0}#{pence}" if pence < 10
     "£#{pounds}.#{pence}"
   end
 end

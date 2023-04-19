@@ -37,8 +37,8 @@ RSpec.describe Dish do
     end
   end
   
-  it "returns a formatted string with name and price when inspected" do
+  it "returns a formatted string with name and price when printed" do
     dish = Dish.new("pasta", 1199, availability=false)
-    expect(dish.inspect).to eq "pasta - £11.99"
+    expect(dish.to_s).to eq "pasta - £11.99"
   end
 end

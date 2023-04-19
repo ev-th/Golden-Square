@@ -23,6 +23,7 @@ class Order
     items = @dish_list.list.join("\n")
     total = @dish_list.total_price
     pounds, pence = total / 100, total % 100
-    formatted_price = "#{items}\nTOTAL - £#{pounds}.#{pence}"
+    pence = "#{0}#{pence}" if pence < 10
+    "#{items}\nTOTAL - £#{pounds}.#{pence}"
   end
 end
