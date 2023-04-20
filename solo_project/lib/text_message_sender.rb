@@ -1,4 +1,6 @@
 require 'twilio-ruby'
+require 'dotenv'
+Dotenv.load
 
 class TextMessageSender
   def initialize(
@@ -11,6 +13,7 @@ class TextMessageSender
     @phone_from = ENV['PHONE_NUMBER_FROM']
     @phone_to = ENV['PHONE_NUMBER_TO']
     @order = order  # order is an instance of Order
+    # p ENV[]
   end
 
   def send
