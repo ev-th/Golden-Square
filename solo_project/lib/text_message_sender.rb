@@ -3,9 +3,7 @@ require 'dotenv'
 Dotenv.load
 
 class TextMessageSender
-  def initialize(
-      order,
-      text_message_api=Twilio::REST::Client
+  def initialize(order, text_message_api=Twilio::REST::Client
     )
     @text_message_api = text_message_api
     @sid = ENV['TWILIO_ACCOUNT_SID']
@@ -13,14 +11,12 @@ class TextMessageSender
     @phone_from = ENV['PHONE_NUMBER_FROM']
     @phone_to = ENV['PHONE_NUMBER_TO']
     @order = order  # order is an instance of Order
-    # p ENV[]
   end
 
   def send
     fail "The order must be confirmed before the text message can be sent" unless @order.complete?
 
     message = "Thank you! Your order was placed and will be delivered before #{delivery_time}"
-
     client = @text_message_api.new(@sid, @auth_token)
     client.messages.create(
       from: @phone_from,
